@@ -2,19 +2,46 @@
 const myLibrary = []; // book objects go here
 
 // The Constructor
-function Book(title, author, pageCount, image, description, completionStatus) {
-  // the constructor...
-  if (!new.target) {
-    throw Error("You must use the 'new' keyword to create a new object.");
+// Refactor to "class Book"
+// function Book(title, author, pageCount, image, description, completionStatus) {
+//   // the constructor...
+//   if (!new.target) {
+//     throw Error("You must use the 'new' keyword to create a new object.");
+//   }
+
+//   this.title = `"${title}"`;
+//   this.author = "By " + author;
+//   this.pageCount = pageCount + " Pages";
+//   this.image = image;
+//   this.description = description;
+//   this.completionStatus = completionStatus;
+//   this.id = crypto.randomUUID();
+// }
+
+class Book {
+  constructor(title, author, pageCount, image, description, completionStatus) {
+    this.title = `"${title}"`;
+    this.author = "By " + author;
+    this.pageCount = pageCount + " Pages";
+    this.image = image;
+    this.description = description;
+    this.completionStatus = completionStatus;
+    this.id = crypto.randomUUID();
   }
 
-  this.title = `"${title}"`;
-  this.author = "By " + author;
-  this.pageCount = pageCount + " Pages";
-  this.image = image;
-  this.description = description;
-  this.completionStatus = completionStatus;
-  this.id = crypto.randomUUID();
+  toggleReadStatus(completionStatusLi) {
+    if (this.completionStatus === "Read") {
+      this.completionStatus = "Unread";
+    } else if (this.completionStatus === "Unread") {
+      this.completionStatus = "Read";
+    }
+
+    if (completionStatusLi.textContent === "Read") {
+      completionStatusLi.textContent = "Unread";
+    } else if (completionStatusLi.textContent === "Unread") {
+      completionStatusLi.textContent = "Read";
+    }
+  }
 }
 
 // Create and Store Book
@@ -38,20 +65,6 @@ function addBookToLibrary(
   myLibrary.push(newBook);
   displayBooks();
 }
-
-Book.prototype.toggleReadStatus = function (completionStatusLi) {
-  if (this.completionStatus === "Read") {
-    this.completionStatus = "Unread";
-  } else if (this.completionStatus === "Unread") {
-    this.completionStatus = "Read";
-  }
-
-  if (completionStatusLi.textContent === "Read") {
-    completionStatusLi.textContent = "Unread";
-  } else if (completionStatusLi.textContent === "Unread") {
-    completionStatusLi.textContent = "Read";
-  }
-};
 
 // Display Books - Loop Through Array
 function displayBooks() {
