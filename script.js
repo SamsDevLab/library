@@ -1,23 +1,6 @@
 // The Array
 const myLibrary = []; // book objects go here
 
-// The Constructor
-// Refactor to "class Book"
-// function Book(title, author, pageCount, image, description, completionStatus) {
-//   // the constructor...
-//   if (!new.target) {
-//     throw Error("You must use the 'new' keyword to create a new object.");
-//   }
-
-//   this.title = `"${title}"`;
-//   this.author = "By " + author;
-//   this.pageCount = pageCount + " Pages";
-//   this.image = image;
-//   this.description = description;
-//   this.completionStatus = completionStatus;
-//   this.id = crypto.randomUUID();
-// }
-
 class Book {
   constructor(title, author, pageCount, image, description, completionStatus) {
     this.title = `"${title}"`;
@@ -237,6 +220,3 @@ addBookToLibrary(
   "In a future without books, a fireman questions his duty to burn them.",
   "Read"
 );
-
-// Checklist Before Publishing
-// • Fix form - there is a bug that allows users to surpass the required fields. Probably due to the backend include "", By, and Pages. I think this is the issue
